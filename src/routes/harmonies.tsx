@@ -26,7 +26,7 @@ export const Route = createFileRoute("/harmonies")({
   component: HarmoniesPage,
 });
 
-function Swatch({ hsl, large }: { hsl: HSL; large?: boolean }) {
+function Swatch({ hsl, large }: { hsl: HSL; large?: boolean | undefined }) {
   const hex = hslToHex(hsl);
   return (
     <button
