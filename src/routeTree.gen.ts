@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HarmoniesRouteImport } from './routes/harmonies'
+import { Route as PalettesRouteImport } from './routes/palettes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HarmoniesRoute = HarmoniesRouteImport.update({
+  id: '/harmonies',
+  path: '/harmonies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PalettesRoute = PalettesRouteImport.update({
+  id: '/palettes',
+  path: '/palettes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/harmonies': typeof HarmoniesRoute
+  '/palettes': typeof PalettesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/harmonies': typeof HarmoniesRoute
+  '/palettes': typeof PalettesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/harmonies': typeof HarmoniesRoute
+  '/palettes': typeof PalettesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/harmonies' | '/palettes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/harmonies' | '/palettes'
+  id: '__root__' | '/' | '/harmonies' | '/palettes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HarmoniesRoute: typeof HarmoniesRoute
+  PalettesRoute: typeof PalettesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/harmonies': {
+      id: '/harmonies'
+      path: '/harmonies'
+      fullPath: '/harmonies'
+      preLoaderRoute: typeof HarmoniesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/palettes': {
+      id: '/palettes'
+      path: '/palettes'
+      fullPath: '/palettes'
+      preLoaderRoute: typeof PalettesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HarmoniesRoute: HarmoniesRoute,
+  PalettesRoute: PalettesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

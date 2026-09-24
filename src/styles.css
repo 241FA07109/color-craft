@@ -98,6 +98,35 @@
   backdrop-filter: blur(16px);
 }
 
+.chroma-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0.75rem;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.chroma-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
+}
+
+.chroma-slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

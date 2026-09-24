@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "../components/Chrome";
 import { CopyButton } from "../components/CopyButton";
-import { hslToHex, randomHsl, readableText, clampHsl } from "../lib/color";
-import { useColorState, addPalette, removePalette, setColor, hexToHslSafe } from "../lib/paletteActions";
+import { hslToHex, hexToHsl, randomHsl, readableText, clampHsl } from "../lib/color";
+import { useColorState, addPalette, removePalette, setColor } from "../lib/colorStore";
 
 export const Route = createFileRoute("/palettes")({
   head: () => ({
@@ -71,7 +71,7 @@ function PalettesPage() {
                     type="button"
                     title={`Use ${c}`}
                     onClick={() => {
-                      const hsl = hexToHslSafe(c);
+                      const hsl = hexToHsl(c);
                       if (hsl) setColor(hsl);
                     }}
                     className="group relative h-24 rounded-lg transition-transform hover:scale-105"
